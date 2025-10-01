@@ -14,9 +14,12 @@ dependencies {
     implementation project(':order-service:order-domain:order-domain-core')
     implementation project(':common:common-domain')
     implementation 'org.springframework.boot:spring-boot-starter-validation:3.3.3'
+    implementation 'org.springframework.boot:spring-boot-starter-json:3.3.3'
     implementation 'org.springframework:spring-tx:6.1.13'
     compileOnly 'org.projectlombok:lombok:1.18.34'
     annotationProcessor 'org.projectlombok:lombok:1.18.34'
+    testImplementation('org.mockito:mockito-core')
+    testImplementation('org.springframework.boot:spring-boot-starter-test:3.3.3')
 }
 
 bootJar {

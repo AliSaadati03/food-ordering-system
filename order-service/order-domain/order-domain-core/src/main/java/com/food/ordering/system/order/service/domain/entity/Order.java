@@ -1,11 +1,10 @@
 package com.food.ordering.system.order.service.domain.entity;
 
-import com.food.ordering.system.domain.entity.AggregateRoot;
-import com.food.ordering.system.domain.valueobject.CustomerId;
-import com.food.ordering.system.domain.valueobject.Money;
-import com.food.ordering.system.domain.valueobject.OrderId;
-import com.food.ordering.system.domain.valueobject.OrderStatus;
-import com.food.ordering.system.domain.valueobject.RestaurantId;
+import com.food.ordering.system.order.service.domain.valueobject.CustomerId;
+import com.food.ordering.system.order.service.domain.valueobject.Money;
+import com.food.ordering.system.order.service.domain.valueobject.OrderId;
+import com.food.ordering.system.order.service.domain.valueobject.OrderStatus;
+import com.food.ordering.system.order.service.domain.valueobject.RestaurantId;
 import com.food.ordering.system.order.service.domain.exception.OrderDomainException;
 import com.food.ordering.system.order.service.domain.valueobject.OrderItemId;
 import com.food.ordering.system.order.service.domain.valueobject.StreetAddress;
@@ -100,7 +99,7 @@ public class Order extends AggregateRoot<OrderId> {
             throw new OrderDomainException("Order status is not in correct state for cancel operation!");
         }
 
-        orderStatus = OrderStatus.CANCELED;
+        orderStatus = OrderStatus.CANCELLED;
         updateFailureMessages(failureMessages);
     }
 
