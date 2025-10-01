@@ -15,61 +15,53 @@ import java.util.List;
 
 @Slf4j
 public class OrderDomainServiceImpl implements OrderDomainService {
-
-    public static final String UTC = "UTC";
-
     @Override
     public OrderCreatedEvent validateAndInitiateOrder(Order order, Restaurant restaurant) {
-
         validateRestaurant(restaurant);
         setOrderProductInformation(order, restaurant);
         order.validateOrder();
         order.initializeOrder();
-        log.info("Order with id: {} is initiated.", order.getId().getValue());
-        return new OrderCreatedEvent(ZonedDateTime.now(ZoneId.of(UTC)), order);
+        log.info("order with id: {} is initialized", order.getId().getValue());
+        return new OrderCreatedEvent(ZonedDateTime.now(ZoneId.of("UTC")), order);
     }
 
     private void setOrderProductInformation(Order order, Restaurant restaurant) {
-        // HashMap Linear time
-        order.getItems().forEach(orderItem -> restaurant.getProducts().forEach(restaurantProduct -> {
-
+        order.getItems().forEach(orderItem -> restaurant.getProducts().forEach(product -> {
             Product currentProduct = orderItem.getProduct();
-            if (currentProduct.equals(restaurantProduct)) {
-
-                currentProduct.updateWithConfirmedNameAndPrice(restaurantProduct.getName(), restaurantProduct.getPrice());
-            }
+            if (currentProduct.equals(product))
+                product.updateConfirmedNameAndPrice(product.getName(), product.getPrice());
         }));
     }
 
     private void validateRestaurant(Restaurant restaurant) {
         if (!restaurant.isActive()) {
-            throw new OrderDomainException("Restaurant with id " + restaurant.getId().getValue() + " is currently not active!");
+            throw new OrderDomainException("restaurant with id: " + restaurant.getId().getValue() + " is not active.");
         }
     }
 
     @Override
     public OrderPaidEvent payOrder(Order order) {
         order.pay();
-        log.info("Order with id: {} is paid", order.getId().getValue());
-        return new OrderPaidEvent(ZonedDateTime.now(ZoneId.of(UTC)), order);
+        log.info("order with id: {} is paid", order.getId().getValue());
+        return new OrderPaidEvent(ZonedDateTime.now(ZoneId.of("UTC")), order);
+    }
+
+    @Override
+    public OrderCancelledEvent cancelOrderPayment(Order order, List<String> failureMessage) {
+        order.initCancel(failureMessage);
+        log.info("order with id: {} is cancelling", order.getId().getValue());
+        return new OrderCancelledEvent(ZonedDateTime.now(ZoneId.of("UTC")), order);
+    }
+
+    @Override
+    public void cancelOrder(Order order, List<String> failureMessage) {
+        order.cancel(failureMessage);
+        log.info("order with id: {} is cancelled", order.getId().getValue());
     }
 
     @Override
     public void approveOrder(Order order) {
         order.approve();
-        log.info("Order with id: {} is approved", order.getId().getValue());
-    }
-
-    @Override
-    public OrderCancelledEvent cancelOrderPayment(Order order, List<String> failureMessages) {
-        order.initCancel(failureMessages);
-        log.info("Order payment is cancelling for order id {}", order.getId().getValue());
-        return new OrderCancelledEvent(ZonedDateTime.now(ZoneId.of(UTC)), order);
-    }
-
-    @Override
-    public void cancelOrder(Order order, List<String> failureMessages) {
-        order.cancel(failureMessages);
-        log.info("Order with id: {} is cancelled", order.getId().getValue());
+        log.info("order with id: {} is approved", order.getId().getValue());
     }
 }

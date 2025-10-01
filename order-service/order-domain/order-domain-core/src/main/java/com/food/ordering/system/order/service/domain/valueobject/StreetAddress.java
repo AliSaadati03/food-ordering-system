@@ -10,27 +10,27 @@ public class StreetAddress {
     private final String postalCode;
     private final String city;
 
-    public StreetAddress(UUID id, String street, String portalCode, String city) {
+    public StreetAddress(String city, UUID id, String street, String postalCode) {
+        this.city = city;
         this.id = id;
         this.street = street;
-        this.postalCode = portalCode;
-        this.city = city;
+        this.postalCode = postalCode;
+    }
+
+    public String getCity() {
+        return city;
     }
 
     public UUID getId() {
         return id;
     }
 
-    public String getStreet() {
-        return street;
-    }
-
     public String getPostalCode() {
         return postalCode;
     }
 
-    public String getCity() {
-        return city;
+    public String getStreet() {
+        return street;
     }
 
     @Override

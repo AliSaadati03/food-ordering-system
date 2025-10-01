@@ -1,27 +1,6 @@
-plugins {
-    id 'java'
-    id 'org.springframework.boot' version '3.3.3'
-    id 'io.spring.dependency-management' version '1.1.6'
-}
-
-configurations {
-    compileOnly {
-        extendsFrom annotationProcessor
-    }
-}
-
 dependencies {
     implementation project(':common:common-domain')
 
-    compileOnly 'org.projectlombok:lombok:1.18.34'
-    annotationProcessor 'org.projectlombok:lombok:1.18.34'
-    implementation 'org.springframework.boot:spring-boot-starter-validation:3.3.3'
-}
-
-bootJar {
-    enabled = false
-}
-
-jar {
-    enabled = true
+    compileOnly("org.projectlombok:lombok:1.18.34")
+    implementation("org.springframework.boot:spring-boot-starter-logging:3.3.2")
 }
