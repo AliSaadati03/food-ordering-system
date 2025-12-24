@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DataSourcePerFileMappings">
+    <file url="file://$PROJECT_DIR$/order-service/order-container/src/main/resources/init-schema.sql" value="602687ac-46ae-47dd-8378-6f4d79357db1" />
+  </component>
+</project>
