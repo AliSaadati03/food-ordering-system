@@ -3,7 +3,6 @@ package com.food.ordering.system.payment.service.messaging.listener.kafka;
 import com.food.ordering.system.kafka.consumer.KafkaConsumer;
 import com.food.ordering.system.kafka.order.avro.model.PaymentOrderStatus;
 import com.food.ordering.system.kafka.order.avro.model.PaymentRequestAvroModel;
-import com.food.ordering.system.order.service.domain.valueobject.OrderStatus;
 import com.food.ordering.system.payment.service.domain.ports.input.message.listener.PaymentRequestMessageListener;
 import com.food.ordering.system.payment.service.messaging.mapper.PaymentMessagingDataMapper;
 import lombok.extern.slf4j.Slf4j;
@@ -17,7 +16,7 @@ import java.util.List;
 
 @Slf4j
 @Component
-public class PaymentKafkaListener implements KafkaConsumer<PaymentRequestAvroModel> {
+public class PaymentKafkaListener implements  KafkaConsumer<PaymentRequestAvroModel> {
 
     private final PaymentRequestMessageListener paymentRequestMessageListener;
     private final PaymentMessagingDataMapper paymentMessagingDataMapper;
