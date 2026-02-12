@@ -37,6 +37,11 @@
             <option value="$PROJECT_DIR$/payment-service/payment-messaging" />
             <option value="$PROJECT_DIR$/restaurant-service" />
             <option value="$PROJECT_DIR$/restaurant-service/restaurant-container" />
+            <option value="$PROJECT_DIR$/restaurant-service/restaurant-dataaccess" />
+            <option value="$PROJECT_DIR$/restaurant-service/restaurant-domain" />
+            <option value="$PROJECT_DIR$/restaurant-service/restaurant-domain/restaurant-application-service" />
+            <option value="$PROJECT_DIR$/restaurant-service/restaurant-domain/restaurant-domain-core" />
+            <option value="$PROJECT_DIR$/restaurant-service/restaurant-messaging" />
           </set>
         </option>
       </GradleProjectSettings>
