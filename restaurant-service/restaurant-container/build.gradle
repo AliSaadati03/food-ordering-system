@@ -12,6 +12,10 @@ repositories {
 }
 
 dependencies {
+    implementation project(':restaurant-service:restaurant-domain:restaurant-domain-core')
+    implementation project(':restaurant-service:restaurant-domain:restaurant-application-service')
+    implementation project(':restaurant-service:restaurant-dataaccess')
+    implementation project(':restaurant-service:restaurant-messaging')
 
     implementation("org.springframework.boot:spring-boot-starter:3.3.3") {
         exclude group: 'org.springframework.boot', module: 'spring-boot-starter-logging'

@@ -55,7 +55,7 @@ public class PaymentRequestHelper {
         CreditEntry creditEntry = getCreditEntry(payment.getCustomerId());
         List<CreditHistory> creditHistories = getCreditHistory(payment.getCustomerId());
         List<String> failureMessages = new ArrayList<>();
-        PaymentEvent paymentEvent = paymentDomainService.validateAndInitiatePayment(payment, creditEntry, creditHistories, failureMessages);
+        PaymentEvent paymentEvent = paymentDomainService.validateAndInitiatePayment(payment, creditEntry, creditHistories, failureMessages, paymentCompletedMessagePublisher, paymentFailedMessagePublisher);
         persistDbObjects(payment, creditEntry, creditHistories, failureMessages);
         return paymentEvent;
     }
@@ -74,7 +74,7 @@ public class PaymentRequestHelper {
         CreditEntry creditEntry = getCreditEntry(payment.getCustomerId());
         List<CreditHistory> creditHistories = getCreditHistory(payment.getCustomerId());
         List<String> failureMessages = new ArrayList<>();
-        PaymentEvent paymentEvent = paymentDomainService.validateAndCancelPayment(payment, creditEntry, creditHistories, failureMessages);
+        PaymentEvent paymentEvent = paymentDomainService.validateAndCancelPayment(payment, creditEntry, creditHistories, failureMessages, paymentCancelledMessagePublisher, paymentFailedMessagePublisher);
         persistDbObjects(payment, creditEntry, creditHistories, failureMessages);
         return paymentEvent;
     }

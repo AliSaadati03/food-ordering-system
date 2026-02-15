@@ -4,4 +4,5 @@ import com.food.ordering.system.order.service.domain.event.publisher.DomainEvent
 import com.food.ordering.system.order.service.domain.event.OrderCancelledEvent;
 
 public interface OrderCancelledPaymentRequestMessagePublisher extends DomainEventPublisher<OrderCancelledEvent> {
+    void publish(OrderCancelledEvent event);
 }

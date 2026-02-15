@@ -13,7 +13,7 @@ public class CreditEntryDataAccessMapper {
 
     public CreditEntry creditEntryEntityToCreditEntry(CreditEntryEntity creditEntryEntity) {
         return CreditEntry.builder()
-                .creditEntryId(creditEntryEntity.getId())
+                .creditEntryId(new CreditEntryId(creditEntryEntity.getId()))
                 .customerId(new CustomerId(creditEntryEntity.getCustomerId()))
                 .totalCreditAmount(new Money(creditEntryEntity.getTotalCreditAmount()))
                 .build();
