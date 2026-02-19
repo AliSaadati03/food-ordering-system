@@ -18,17 +18,17 @@ import java.util.Optional;
 public class OrderTrackCommandHandler {
 
     private final OrderDataMapper orderDataMapper;
-    private final OrderRepository orderRespository;
+    private final OrderRepository orderRepository;
 
-    public OrderTrackCommandHandler(OrderDataMapper orderDataMapper, OrderRepository orderRespository) {
+    public OrderTrackCommandHandler(OrderDataMapper orderDataMapper, OrderRepository orderRespoitory) {
         this.orderDataMapper = orderDataMapper;
-        this.orderRespository = orderRespository;
+        this.orderRepository = orderRespoitory;
     }
 
     @Transactional(readOnly = true)
     public TrackOrderResponse trackOrder(TrackOrderQuery trackOrderQuery) {
 
-        final Optional<Order> orderResult = orderRespository.findByTrackingId(new TrackingId(trackOrderQuery.getOrderTrackingId()));
+        final Optional<Order> orderResult = orderRepository.findByTrackingId(new TrackingId(trackOrderQuery.getOrderTrackingId()));
 
         if (orderResult.isEmpty()) {
             log.warn("Could not find order with tracking id: {}", trackOrderQuery.getOrderTrackingId());
